@@ -1,1 +1,336 @@
+<!DOCTYPE html>
+<html lang="mn">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Намуунзул ❤️</title>
+
+    <style>
+
+        body{
+
+            margin:0;
+
+            overflow:hidden;
+
+            background:linear-gradient(
+                to bottom,
+                #ffe4ec,
+                #fff7fa
+            );
+
+            font-family:Arial,sans-serif;
+        }
+
+
+        /* 🌷 Мэндчилгээ */
+
+        .greeting{
+
+            position:fixed;
+
+            top:0;
+            left:0;
+
+            width:100%;
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+
+            background:linear-gradient(
+                135deg,
+                #ffe4ec,
+                #fff7fa
+            );
+
+            z-index:99999;
+        }
+
+
+        .greeting-content{
+
+            width:80%;
+
+            max-width:700px;
+
+            color:#8b004f;
+
+            animation:fadeIn 2s ease;
+        }
+
+
+        .greeting-content h1{
+
+            font-size:48px;
+
+            margin-bottom:40px;
+
+            color:#ff4081;
+        }
+
+
+        .greeting-content p{
+
+            font-size:28px;
+
+            line-height:1.8;
+        }
+
+
+        .special-text{
+
+            margin-top:40px;
+
+            font-size:32px;
+
+            font-weight:bold;
+
+            color:#ff4081;
+        }
+
+
+        /* 🎧 Intro */
+
+        .intro{
+
+            position:fixed;
+
+            top:0;
+            left:0;
+
+            width:100%;
+            height:100vh;
+
+            display:none;
+
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+
+            background:linear-gradient(
+                135deg,
+                #ffe4ec,
+                #fff7fa
+            );
+
+            z-index:9999;
+        }
+
+
+        .intro-content{
+
+            width:80%;
+
+            max-width:700px;
+
+            color:#8b004f;
+        }
+
+
+        .intro-content h2{
+
+            font-size:48px;
+        }
+
+
+        .intro-content p{
+
+            font-size:28px;
+
+            line-height:1.8;
+        }
+
+
+        #startBtn{
+
+            margin-top:40px;
+
+            padding:15px 40px;
+
+            border:none;
+
+            border-radius:30px;
+
+            background:#ff69b4;
+
+            color:white;
+
+            font-size:20px;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+
+        #startBtn:hover{
+
+            transform:scale(1.05);
+        }
+
+
+        @keyframes fadeIn{
+
+            from{
+
+                opacity:0;
+
+                transform:translateY(30px);
+            }
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- 🌷 Мэндчилгээ -->
+
+    <div class="greeting">
+
+        <div class="greeting-content">
+
+            <h1>
+
+                Сайн уу, хөөрхөнөө. ❤️
+
+            </h1>
+
+            <p>
+
+                Өнөөдөр ч гэсэн
+
+                чамайгаа инээмсэглээсэй гэж хүссэн болохоор...
+
+            </p>
+
+            <p class="special-text">
+
+                жижигхэн зүйл бэлдлээ. 🌷
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 🎧 Intro -->
+
+    <div class="intro">
+
+        <div class="intro-content">
+
+            <h2>
+
+                🎧
+
+            </h2>
+
+            <p>
+
+                Энэ дууг тоглуулаад
+
+                цааш нь үзээрэй, хөөрхөнөө. ❤️
+
+                <br><br>
+
+                Илүү сонирхолтой байх болно. 🌸
+
+            </p>
+
+            <button id="startBtn">
+
+                🎵 Тоглуулах 🎵
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 🎵 Дуу -->
+
+    <audio id="ourSong" loop>
+
+        <source src="chin-zvrhnii-hair.mp3"
+                type="audio/mpeg">
+
+    </audio>
+
+
+
+    <script>
+
+
+        /* 🌷 Мэндчилгээ → 🎧 Intro */
+
+        setTimeout(() => {
+
+            document
+            .querySelector(".greeting")
+            .style.display = "none";
+
+
+            document
+            .querySelector(".intro")
+            .style.display = "flex";
+
+        }, 4000);
+
+
+
+
+        /* 🎧 Дуу тоглуулах */
+
+        document
+        .getElementById("startBtn")
+        .addEventListener("click", () => {
+
+
+            document
+            .getElementById("ourSong")
+            .play();
+
+
+            document
+            .querySelector(".intro")
+            .style.display = "none";
+
+
+            alert(
+                "🌸 Эндээс Slide 1-ийн код эхэлнэ. ❤️"
+            );
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
