@@ -1,336 +1,263 @@
 <!DOCTYPE html>
 <html lang="mn">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Намуунзул ❤️</title>
-
-    <style>
-
-        body{
-
-            margin:0;
-
-            overflow:hidden;
-
-            background:linear-gradient(
-                to bottom,
-                #ffe4ec,
-                #fff7fa
-            );
-
-            font-family:Arial,sans-serif;
-        }
-
-
-        /* 🌷 Мэндчилгээ */
-
-        .greeting{
-
-            position:fixed;
-
-            top:0;
-            left:0;
-
-            width:100%;
-            height:100vh;
-
-            display:flex;
-
-            justify-content:center;
-            align-items:center;
-
-            text-align:center;
-
-            background:linear-gradient(
-                135deg,
-                #ffe4ec,
-                #fff7fa
-            );
-
-            z-index:99999;
-        }
-
-
-        .greeting-content{
-
-            width:80%;
-
-            max-width:700px;
-
-            color:#8b004f;
-
-            animation:fadeIn 2s ease;
-        }
-
-
-        .greeting-content h1{
-
-            font-size:48px;
-
-            margin-bottom:40px;
-
-            color:#ff4081;
-        }
-
-
-        .greeting-content p{
-
-            font-size:28px;
-
-            line-height:1.8;
-        }
-
-
-        .special-text{
-
-            margin-top:40px;
-
-            font-size:32px;
-
-            font-weight:bold;
-
-            color:#ff4081;
-        }
-
-
-        /* 🎧 Intro */
-
-        .intro{
-
-            position:fixed;
-
-            top:0;
-            left:0;
-
-            width:100%;
-            height:100vh;
-
-            display:none;
-
-            justify-content:center;
-            align-items:center;
-
-            text-align:center;
-
-            background:linear-gradient(
-                135deg,
-                #ffe4ec,
-                #fff7fa
-            );
-
-            z-index:9999;
-        }
-
-
-        .intro-content{
-
-            width:80%;
-
-            max-width:700px;
-
-            color:#8b004f;
-        }
-
-
-        .intro-content h2{
-
-            font-size:48px;
-        }
-
-
-        .intro-content p{
-
-            font-size:28px;
-
-            line-height:1.8;
-        }
-
-
-        #startBtn{
-
-            margin-top:40px;
-
-            padding:15px 40px;
-
-            border:none;
-
-            border-radius:30px;
-
-            background:#ff69b4;
-
-            color:white;
-
-            font-size:20px;
-
-            cursor:pointer;
-
-            transition:0.3s;
-        }
-
-
-        #startBtn:hover{
-
-            transform:scale(1.05);
-        }
-
-
-        @keyframes fadeIn{
-
-            from{
-
-                opacity:0;
-
-                transform:translateY(30px);
-            }
-
-            to{
-
-                opacity:1;
-
-                transform:translateY(0);
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Хөөрөнөө болзоонд урьж байна  💕</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ffdce8;
+    overflow:hidden;
+}
+
+.card{
+    width:90%;
+    max-width:400px;
+    background:white;
+    border-radius:30px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    z-index:2;
+}
+
+h1{
+    color:#ff4081;
+    font-size:35px;
+}
+
+img{
+    width:130px;
+}
+
+button{
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#yes,#no{
+    width:130px;
+    height:55px;
+    font-size:20px;
+    margin:10px;
+}
+
+#yes{
+    background:#ff4081;
+    color:white;
+}
+
+#no{
+    background:#e5e5e5;
+}
+
+#musicBtn{
+    background:#ffc0cb;
+    padding:12px 25px;
+    margin-top:10px;
+}
+
+#message{
+    color:#ff4081;
+    min-height:30px;
+    font-weight:bold;
+}
+
+#dateBox{
+    display:none;
+    margin-top:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border-radius:15px;
+    border:1px solid #ddd;
+    font-size:16px;
+}
+
+#countdown{
+    color:#ff4081;
+    margin-top:15px;
+}
+
+.heart{
+    position:fixed;
+    animation:fly 5s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes fly{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<div class="card">
 
-    <!-- 🌷 Мэндчилгээ -->
+<img src="https://cdn-icons-png.flaticon.com/512/616/616430.png">
 
-    <div class="greeting">
+<h1>🌸 Надтай болзоонд явах уу? 🌸</h1>
 
-        <div class="greeting-content">
+<p id="message"></p>
 
-            <h1>
+<div>
+<button id="yes">ТИЙМ 💕</button>
+<button id="no">ҮГҮЙ 😅</button>
+</div>
 
-                Сайн уу, хөөрхөнөө. ❤️
+<button id="musicBtn">🎵 Хөгжим асаах</button>
 
-            </h1>
+<div id="dateBox">
+<h3>📅 Болзооны өдөр, цагаа сонго</h3>
 
-            <p>
+<input type="datetime-local" id="dateInput">
 
-                Өнөөдөр ч гэсэн
+<h3 id="countdown"></h3>
+</div>
 
-                чамайгаа инээмсэглээсэй гэж хүссэн болохоор...
+</div>
 
-            </p>
+<script>
 
-            <p class="special-text">
+// ❤️ Нисдэг зүрх
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+    document.body.appendChild(heart);
 
-                жижигхэн зүйл бэлдлээ. 🌷
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
 
-            </p>
+},700);
 
-        </div>
 
-    </div>
+// 🎵 Хөгжим
+const music = new Audio(
+'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0f5f7df16.mp3'
+);
 
+music.loop=true;
 
+musicBtn.onclick=()=>{
+    music.play();
+    musicBtn.style.display='none';
+};
 
-    <!-- 🎧 Intro -->
 
-    <div class="intro">
+// 😅 ҮГҮЙ товч
+const messages=[
+"Яагаад? 🥺",
+"Дахиад бод доо 😭",
+"Гуйя аа ❤️",
+"Нэг л удаа шүү 🥰",
+"Кофе уух уу? ☕",
+"Зайрмаг идэх үү? 🍦",
+"За тэгвэл ТИЙМ дараач 😘"
+];
 
-        <div class="intro-content">
+let count=0;
+let noScale=1;
+let yesScale=1;
 
-            <h2>
+no.onclick=()=>{
 
-                🎧
+    message.innerText =
+        messages[Math.min(count,messages.length-1)];
 
-            </h2>
+    noScale -= 0.1;
+    if(noScale < 0.5){
+        noScale = 0.5;
+    }
 
-            <p>
+    yesScale += 0.08;
+    if(yesScale > 1.5){
+        yesScale = 1.5;
+    }
 
-                Энэ дууг тоглуулаад
+    no.style.transform=`scale(${noScale})`;
+    yes.style.transform=`scale(${yesScale})`;
 
-                цааш нь үзээрэй, хөөрхөнөө. ❤️
+    count++;
+};
 
-                <br><br>
 
-                Илүү сонирхолтой байх болно. 🌸
+// 💕 ТИЙМ
+yes.onclick=()=>{
+    dateBox.style.display='block';
+};
 
-            </p>
 
-            <button id="startBtn">
+// ⏳ Countdown
+setInterval(()=>{
 
-                🎵 Тоглуулах 🎵
+    const value =
+        document.getElementById('dateInput').value;
 
-            </button>
+    if(!value){
+        countdown.innerHTML='';
+        return;
+    }
 
-        </div>
+    const target=new Date(value);
+    const now=new Date();
 
-    </div>
+    const diff=target-now;
 
+    if(diff<=0){
+        countdown.innerHTML=
+            '🎉 Болзооны цаг боллоо! ❤️';
+        return;
+    }
 
+    const days=
+        Math.floor(diff/(1000*60*60*24));
 
-    <!-- 🎵 Дуу -->
+    const hours=
+        Math.floor((diff%(1000*60*60*24))
+        /(1000*60*60));
 
-    <audio id="ourSong" loop>
+    const minutes=
+        Math.floor((diff%(1000*60*60))
+        /(1000*60));
 
-        <source src="chin-zvrhnii-hair.mp3"
-                type="audio/mpeg">
+    const seconds=
+        Math.floor((diff%(1000*60))/1000);
 
-    </audio>
+    countdown.innerHTML=
+    `❤️ Болзоо хүртэл<br>
+    ${days} өдөр ${hours} цаг
+    ${minutes} минут ${seconds} секунд`;
 
+},1000);
 
-
-    <script>
-
-
-        /* 🌷 Мэндчилгээ → 🎧 Intro */
-
-        setTimeout(() => {
-
-            document
-            .querySelector(".greeting")
-            .style.display = "none";
-
-
-            document
-            .querySelector(".intro")
-            .style.display = "flex";
-
-        }, 4000);
-
-
-
-
-        /* 🎧 Дуу тоглуулах */
-
-        document
-        .getElementById("startBtn")
-        .addEventListener("click", () => {
-
-
-            document
-            .getElementById("ourSong")
-            .play();
-
-
-            document
-            .querySelector(".intro")
-            .style.display = "none";
-
-
-            alert(
-                "🌸 Эндээс Slide 1-ийн код эхэлнэ. ❤️"
-            );
-
-
-        });
-
-
-    </script>
+</script>
 
 </body>
-
 </html>
