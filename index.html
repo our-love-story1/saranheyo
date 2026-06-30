@@ -1,371 +1,535 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Date with Namuunzul ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Болзоонд урих хуудас ❤️</title>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ffd1dc,#ffeef5);
-    font-family:Arial,sans-serif;
-    overflow:hidden;
+:root {
+    --pink: #ff4f81;
+    --pink-dark: #e83f72;
+    --rose: #fff2f6;
+    --text: #34313a;
+    --muted: #6f6772;
+    --card: rgba(255, 255, 255, 0.94);
 }
 
-.card{
-    background:white;
-    width:90%;
-    max-width:420px;
-    padding:30px;
-    border-radius:30px;
-    text-align:center;
-    box-shadow:0 10px 35px rgba(0,0,0,.15);
-    z-index:10;
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(circle at 18% 15%, #fff8c7 0 12%, transparent 28%),
+        radial-gradient(circle at 85% 20%, #c7f2ff 0 10%, transparent 25%),
+        linear-gradient(135deg, #ffd1dc, #fff3f7 52%, #ffe3b3);
+    font-family: "Segoe UI", "Noto Sans", "DejaVu Sans", Arial, sans-serif;
+    color: var(--text);
+    overflow: hidden;
+    padding: 18px;
 }
 
-h1{
-    color:#ff4f81;
-    margin-bottom:10px;
+.card {
+    width: min(92vw, 440px);
+    max-height: calc(100vh - 36px);
+    overflow-y: auto;
+    background: var(--card);
+    padding: 28px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 18px 45px rgba(64, 38, 49, 0.18);
+    position: relative;
+    z-index: 10;
 }
 
-h2{
-    color:#555;
-    font-size:20px;
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #fff2b8;
+    color: #7c4a00;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
-#catGif{
-    width:180px;
-    margin:15px 0;
+h1 {
+    color: var(--pink);
+    font-size: 34px;
+    line-height: 1.12;
+    margin: 0 0 10px;
 }
 
-.option{
-    background:#fff5f7;
-    margin:10px 0;
-    padding:14px;
-    border-radius:15px;
-    text-align:left;
+h2 {
+    color: var(--text);
+    font-size: 20px;
+    line-height: 1.35;
+    margin: 10px 0 18px;
 }
 
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    margin-top:20px;
-    flex-wrap:wrap;
+p {
+    color: var(--muted);
+    line-height: 1.55;
 }
 
-button{
-    border:none;
-    background:#ff5b8a;
-    color:white;
-    padding:14px 24px;
-    border-radius:30px;
-    cursor:pointer;
-    font-size:17px;
+.gif-frame {
+    width: min(310px, 78vw);
+    aspect-ratio: 1 / 1;
+    margin: 12px auto 18px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px;
+    background: #fff7fb;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(255, 79, 129, 0.12);
 }
 
-button:hover{
-    transform:scale(1.05);
+#catGif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-#success{
-    display:none;
+.options {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
 }
 
-#countdown{
-    color:#ff4f81;
-    font-size:22px;
-    margin-top:20px;
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--rose);
+    padding: 13px 14px;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 }
 
-.heart{
-    position:absolute;
-    top:-50px;
-    font-size:25px;
-    animation:fall 6s linear infinite;
+.option:hover {
+    transform: translateY(-1px);
+    border-color: #ffb1c8;
 }
 
-@keyframes fall{
-    to{
-        transform:translateY(120vh);
+.option input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--pink);
+    flex: 0 0 auto;
+}
+
+.option span {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.option small {
+    display: block;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.option:has(input:checked) {
+    border-color: var(--pink);
+    background: #ffe4ed;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+
+button {
+    min-width: 128px;
+    border: 0;
+    background: var(--pink);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    box-shadow: 0 10px 18px rgba(255, 79, 129, 0.25);
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+button:hover,
+button:focus-visible {
+    transform: translateY(-2px) scale(1.03);
+    background: var(--pink-dark);
+    outline: none;
+}
+
+#noBtn {
+    background: #85808a;
+    box-shadow: 0 10px 18px rgba(75, 70, 80, 0.15);
+    min-width: 150px;
+    max-width: min(86vw, 260px);
+    white-space: normal;
+    line-height: 1.25;
+}
+
+#yesBtn.grow,
+#chooseBtn.grow {
+    transform: scale(1.12);
+}
+
+#noMessage {
+    min-height: 28px;
+    margin: 14px 0 0;
+    color: var(--pink-dark);
+    font-weight: 700;
+}
+
+#dateStep,
+#success {
+    display: none;
+}
+
+#selectedDate {
+    color: var(--text);
+    font-size: 18px;
+}
+
+#countdown {
+    display: inline-block;
+    color: var(--pink-dark);
+    background: #fff0b8;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+}
+
+.heart {
+    position: fixed;
+    top: -50px;
+    pointer-events: none;
+    animation: fall 6s linear forwards;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(120vh) rotate(180deg);
+        opacity: 0.15;
     }
 }
 
-@media(max-width:500px){
-
-    .card{
-        padding:22px;
+@media (max-width: 500px) {
+    body {
+        align-items: flex-start;
     }
 
-    h1{
-        font-size:28px;
+    .card {
+        padding: 22px;
+        margin-top: 12px;
     }
 
-    h2{
-        font-size:18px;
+    h1 {
+        font-size: 29px;
     }
 
-    button{
-        width:120px;
+    h2 {
+        font-size: 18px;
+    }
+
+    button {
+        width: 100%;
     }
 }
 </style>
 </head>
+
 <body>
 
-<div class="card" id="mainCard">
+<main class="card" id="mainCard">
+    <div id="askStep">
+        <div class="badge">💌 Чамаас асуух нэг юм байна</div>
 
-    <h1>💕 Namuunzul 💕</h1>
+        <h1>Хээе хөөрхөнөө ❤️</h1>
 
-    <img
-    id="catGif"
-    src="https://media.tenor.com/4K5JqfKq4N8AAAAi/cute-cat.gif">
+        <div class="gif-frame">
+            <img
+                id="catGif"
+                src="date-cute.gif"
+                alt="Хөөрхөн хөдөлгөөнт зураг">
+        </div>
 
-    <h2>Will you go on a date with me?</h2>
+        <h2>Чамайг болзоонд урьж байна</h2>
+        <p>Хариултаа үнэнээсээ өгөөрэй. Гэхдээ “тийм” гэвэл би бүр их баярлана.</p>
 
-    <div class="option">
-        <input type="radio" name="date"
-        value="July 2 2026 18:00">
-        Jul 2 - 18:00
+        <p id="noMessage" aria-live="polite"></p>
+
+        <div class="buttons">
+            <button id="noBtn" type="button">Үгүй 🥺</button>
+            <button id="yesBtn" type="button" onclick="showDateChoices()">Тийм ❤️</button>
+        </div>
     </div>
 
-    <div class="option">
-        <input type="radio" name="date"
-        value="July 3 2026 19:00">
-        Jul 3 - 19:00
+    <div id="dateStep">
+        <div class="badge">💕 Тэгвэл өдрөө сонгоё</div>
+
+        <h1>Ямар өдөр тохирох вэ?</h1>
+        <p>Доороос боломжтой өдрөө сонгоорой. Сонгосон өдрийг надад мэдэгдэнэ.</p>
+
+        <section class="options" aria-label="Болзооны өдөр сонгох">
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-02T18:00:00+08:00" data-label="7 сарын 2, Пүрэв - 18:00">
+                <span>7 сарын 2, Пүрэв - 18:00<small>Оройн тайван уулзалт</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-03T19:00:00+08:00" data-label="7 сарын 3, Баасан - 19:00">
+                <span>7 сарын 3, Баасан - 19:00<small>Баасан гарагийн болзоо</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-05T17:00:00+08:00" data-label="7 сарын 5, Ням - 17:00">
+                <span>7 сарын 5, Ням - 17:00<small>Амралтын өдрийн гоё цаг</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-06T20:00:00+08:00" data-label="7 сарын 6, Даваа - 20:00">
+                <span>7 сарын 6, Даваа - 20:00<small>Оройн зөөлөн уур амьсгал</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-08T18:30:00+08:00" data-label="7 сарын 8, Лхагва - 18:30">
+                <span>7 сарын 8, Лхагва - 18:30<small>Долоо хоногийн дунд жижиг баяр</small></span>
+            </label>
+        </section>
+
+        <div class="buttons">
+            <button id="chooseBtn" type="button" onclick="confirmDate()">Сонголоо ❤️</button>
+        </div>
     </div>
+</main>
 
-    <div class="option">
-        <input type="radio" name="date"
-        value="July 5 2026 17:00">
-        Jul 5 - 17:00
-    </div>
-
-    <div class="option">
-        <input type="radio" name="date"
-        value="July 6 2026 20:00">
-        Jul 6 - 20:00
-    </div>
-
-    <div class="option">
-        <input type="radio" name="date"
-        value="July 8 2026 18:30">
-        Jul 8 - 18:30
-    </div>
-
-    <div class="buttons">
-        <button id="noBtn">No 😢</button>
-        <button onclick="confirmDate()">
-            Yes ❤️
-        </button>
-    </div>
-
-</div>
-
-<div class="card" id="success">
-
-    <h1>🎉 Date Confirmed! 🎉</h1>
-
-    <h2>Thank you Namuunzul ❤️</h2>
-
+<section class="card" id="success">
+    <div class="badge">🎉 Болзоо баталгаажлаа</div>
+    <h1>Баярлалаа ❤️</h1>
     <p id="selectedDate"></p>
-
+    <p>Чамтай уулзах өдөр хүртэл:</p>
     <div id="countdown"></div>
+</section>
 
-</div>
-
-<audio id="music">
-<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3">
+<audio id="music" preload="auto">
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+const EMAILJS_PUBLIC_KEY = "";
+const EMAILJS_SERVICE_ID = "";
+const EMAILJS_TEMPLATE_ID = "";
+const NOTIFY_EMAIL = "chingesc2@gmail.com";
 
-emailjs.init("YOUR_PUBLIC_KEY");
-
-const noBtn =
-document.getElementById("noBtn");
-
-function moveNoButton(){
-
-    const x =
-    Math.random() *
-    (window.innerWidth-120);
-
-    const y =
-    Math.random() *
-    (window.innerHeight-70);
-
-    noBtn.style.position="fixed";
-    noBtn.style.left=x+"px";
-    noBtn.style.top=y+"px";
+if (EMAILJS_PUBLIC_KEY) {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
-noBtn.addEventListener(
-"mouseover",
-moveNoButton
-);
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const noMessage = document.getElementById("noMessage");
 
-noBtn.addEventListener(
-"touchstart",
-moveNoButton
-);
+let noAttempts = 0;
+let countdownTimer = null;
+let heartsTimer = null;
 
-function confirmDate(){
-
-    let selected =
-    document.querySelector(
-    'input[name="date"]:checked'
-    );
-
-    if(!selected){
-        alert("Choose a date ❤️");
-        return;
-    }
-
-    const value =
-    selected.value;
-
-    document.getElementById(
-    "mainCard"
-    ).style.display="none";
-
-    document.getElementById(
-    "success"
-    ).style.display="block";
-
-    document.getElementById(
-    "selectedDate"
-    ).innerHTML=
-    "📅 Our Date:<br><b>"+value+
-    "</b>";
-
-    confetti({
-        particleCount:300,
-        spread:180,
-        origin:{y:0.6}
-    });
+function showDateChoices() {
+    document.getElementById("askStep").style.display = "none";
+    document.getElementById("dateStep").style.display = "block";
 
     createHearts();
 
-    document.getElementById(
-    "music"
-    ).play();
-
-    startCountdown(
-        new Date(value)
-    );
-
-    emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
-        {
-            to_email:
-            "chingesc2@gmail.com",
-
-            message:
-            "Namuunzul selected: "
-            +value
-        }
-    );
+    if (typeof confetti === "function") {
+        confetti({
+            particleCount: 120,
+            spread: 120,
+            origin: { y: 0.65 }
+        });
+    }
 }
 
-function startCountdown(date){
+function teaseNoButton(event) {
+    if (event) {
+        event.preventDefault();
+    }
 
-    setInterval(function(){
+    noAttempts += 1;
 
-        let now =
-        new Date().getTime();
+    const buttonMessages = [
+        "Үгүй ээ? 🥺",
+        "Дахиад бод доо ❤️",
+        "Ганцхан болзоо 😄",
+        "Гоё болзоо болно ❤️",
+        "Тийм гэвэл гоё 💕",
+        "Битгий зугтаач 😅",
+        "Намайг авар 🙈",
+        "Хүлээж байна 🎉",
+        "Хөөрхөн боломж ❤️",
+        "Би хүлээж байна 😌"
+    ];
 
-        let distance =
-        date-now;
+    const longerMessages = [
+        "Жаахан бодоод үз дээ 🥺",
+        "Би гоё газар аваачна шүү ❤️",
+        "Ганцхан хөөрхөн болзоо гэж бодъё 😄",
+        "Чамтай болзоонд явах мөрөөдөлтэй хүн байна ❤️",
+        "За тэгвэл илүү хөөрхөн асууя: тийм үү? 💕",
+        "Үгүй товч ядарлаа, тийм товчоо аваръя 😅",
+        "Намайг ингэж битгий сандарга л даа 🙈",
+        "Тийм гэж дарвал confetti хүртэл баярлана 🎉",
+        "Сүүлийн боломж биш ээ, гэхдээ хамгийн хөөрхөн боломж ❤️",
+        "За би хүлээж байна... тэвчээртэйгээр 😌"
+    ];
 
-        if(distance<=0){
+    const messageIndex = (noAttempts - 1) % buttonMessages.length;
 
-            document.getElementById(
-            "countdown"
-            ).innerHTML=
-            "❤️ It's Date Time! ❤️";
+    noBtn.textContent = buttonMessages[messageIndex];
+    noMessage.textContent = longerMessages[messageIndex];
 
+    yesBtn.classList.add("grow");
+    setTimeout(() => yesBtn.classList.remove("grow"), 240);
+
+    const margin = 16;
+    const maxX = Math.max(margin, window.innerWidth - noBtn.offsetWidth - margin);
+    const maxY = Math.max(margin, window.innerHeight - noBtn.offsetHeight - margin);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = Math.floor(Math.random() * maxX) + "px";
+    noBtn.style.top = Math.floor(Math.random() * maxY) + "px";
+}
+
+noBtn.addEventListener("mouseover", teaseNoButton);
+noBtn.addEventListener("click", teaseNoButton);
+noBtn.addEventListener("touchstart", teaseNoButton);
+
+function confirmDate() {
+    const selected = document.querySelector('input[name="date"]:checked');
+
+    if (!selected) {
+        alert("Эхлээд нэг өдрөө сонгоорой ❤️");
+        document.getElementById("chooseBtn").classList.add("grow");
+        setTimeout(() => document.getElementById("chooseBtn").classList.remove("grow"), 240);
+        return;
+    }
+
+    const dateLabel = selected.dataset.label;
+    const dateValue = selected.value;
+
+    document.getElementById("mainCard").style.display = "none";
+    document.getElementById("success").style.display = "block";
+    document.getElementById("selectedDate").innerHTML = "📅 Бидний болзоо:<br><b>" + dateLabel + "</b>";
+
+    if (typeof confetti === "function") {
+        confetti({
+            particleCount: 300,
+            spread: 180,
+            origin: { y: 0.6 }
+        });
+    }
+
+    createHearts();
+    playMusic();
+    startCountdown(new Date(dateValue));
+    sendEmail(dateLabel);
+}
+
+function playMusic() {
+    const music = document.getElementById("music");
+
+    music.play().catch(() => {
+        console.log("Browser blocked audio playback.");
+    });
+}
+
+function sendEmail(dateLabel) {
+    const configured = EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && NOTIFY_EMAIL;
+
+    if (!configured) {
+        console.log("EmailJS тохируулаагүй байна. Сонгосон өдөр:", dateLabel);
+        console.log("Мэдэгдэх имэйл:", NOTIFY_EMAIL);
+        return;
+    }
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email: NOTIFY_EMAIL,
+        message: "Сонгосон өдөр: " + dateLabel
+    }).catch((error) => {
+        console.log("Email илгээхэд алдаа гарлаа:", error);
+    });
+}
+
+function startCountdown(date) {
+    if (countdownTimer) {
+        clearInterval(countdownTimer);
+    }
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = date.getTime() - now;
+        const countdown = document.getElementById("countdown");
+
+        if (distance <= 0) {
+            countdown.innerHTML = "❤️ Болзооны цаг боллоо! ❤️";
+            clearInterval(countdownTimer);
             return;
         }
 
-        let days =
-        Math.floor(
-        distance/
-        (1000*60*60*24));
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        let hours =
-        Math.floor(
-        (distance%
-        (1000*60*60*24))
-        /(1000*60*60));
+        countdown.innerHTML = "⏳ " + days + " өдөр " + hours + " цаг " + minutes + " мин " + seconds + " сек";
+    }
 
-        let minutes =
-        Math.floor(
-        (distance%
-        (1000*60*60))
-        /(1000*60));
-
-        let seconds =
-        Math.floor(
-        (distance%
-        (1000*60))
-        /1000);
-
-        document.getElementById(
-        "countdown"
-        ).innerHTML=
-        "⏳ "+
-        days+" days "+
-        hours+"h "+
-        minutes+"m "+
-        seconds+"s ❤️";
-
-    },1000);
+    updateCountdown();
+    countdownTimer = setInterval(updateCountdown, 1000);
 }
 
-function createHearts(){
+function createHearts() {
+    if (heartsTimer) {
+        return;
+    }
 
-    setInterval(function(){
+    heartsTimer = setInterval(function() {
+        const heart = document.createElement("div");
 
-        const heart =
-        document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = 20 + Math.random() * 24 + "px";
 
-        heart.className=
-        "heart";
+        document.body.appendChild(heart);
 
-        heart.innerHTML="❤️";
-
-        heart.style.left=
-        Math.random()*100+
-        "vw";
-
-        heart.style.fontSize=
-        (20+
-        Math.random()*25)
-        +"px";
-
-        document.body.appendChild(
-        heart
-        );
-
-        setTimeout(()=>{
+        setTimeout(() => {
             heart.remove();
-        },6000);
-
-    },250);
+        }, 6000);
+    }, 260);
 }
 </script>
 
