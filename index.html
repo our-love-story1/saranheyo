@@ -6,7 +6,6 @@
 <title>Болзоонд урих хуудас ❤️</title>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <style>
 * {
@@ -119,19 +118,12 @@ p {
     border-radius: 14px;
     text-align: left;
     cursor: pointer;
-    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-}
-
-.option:hover {
-    transform: translateY(-1px);
-    border-color: #ffb1c8;
 }
 
 .option input {
     width: 18px;
     height: 18px;
     accent-color: var(--pink);
-    flex: 0 0 auto;
 }
 
 .option span {
@@ -170,19 +162,10 @@ button {
     font-size: 17px;
     font-weight: 700;
     box-shadow: 0 10px 18px rgba(255, 79, 129, 0.25);
-    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-}
-
-button:hover,
-button:focus-visible {
-    transform: translateY(-2px) scale(1.03);
-    background: var(--pink-dark);
-    outline: none;
 }
 
 #noBtn {
     background: #85808a;
-    box-shadow: 0 10px 18px rgba(75, 70, 80, 0.15);
     min-width: 150px;
     max-width: min(86vw, 260px);
     white-space: normal;
@@ -204,11 +187,6 @@ button:focus-visible {
 #dateStep,
 #success {
     display: none;
-}
-
-#selectedDate {
-    color: var(--text);
-    font-size: 18px;
 }
 
 #countdown {
@@ -272,16 +250,13 @@ button:focus-visible {
         <h1>Хээе хөөрхөнөө ❤️</h1>
 
         <div class="gif-frame">
-            <img
-                id="catGif"
-                src="date-cute.gif"
-                alt="Хөөрхөн хөдөлгөөнт зураг">
+            <img id="catGif" src="date-cute.gif" alt="Хөөрхөн хөдөлгөөнт зураг">
         </div>
 
         <h2>Чамайг болзоонд урьж байна</h2>
         <p>Хариултаа үнэнээсээ өгөөрэй. Гэхдээ “тийм” гэвэл би бүр их баярлана.</p>
 
-        <p id="noMessage" aria-live="polite"></p>
+        <p id="noMessage"></p>
 
         <div class="buttons">
             <button id="noBtn" type="button">Үгүй 🥺</button>
@@ -293,32 +268,32 @@ button:focus-visible {
         <div class="badge">💕 Тэгвэл өдрөө сонгоё</div>
 
         <h1>Ямар өдөр тохирох вэ?</h1>
-        <p>Доороос боломжтой өдрөө сонгоорой. Сонгосон өдрийг надад мэдэгдэнэ.</p>
+        <p>Доороос боломжтой өдрөө сонгоорой.</p>
 
-        <section class="options" aria-label="Болзооны өдөр сонгох">
-            <label class="option">
-                <input type="radio" name="date" value="2026-07-02T18:00:00+08:00" data-label="7 сарын 2, Пүрэв - 18:00">
-                <span>7 сарын 2, Пүрэв - 18:00<small>Оройн тайван уулзалт</small></span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="date" value="2026-07-03T19:00:00+08:00" data-label="7 сарын 3, Баасан - 19:00">
-                <span>7 сарын 3, Баасан - 19:00<small>Баасан гарагийн болзоо</small></span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="date" value="2026-07-05T17:00:00+08:00" data-label="7 сарын 5, Ням - 17:00">
-                <span>7 сарын 5, Ням - 17:00<small>Амралтын өдрийн гоё цаг</small></span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="date" value="2026-07-06T20:00:00+08:00" data-label="7 сарын 6, Даваа - 20:00">
-                <span>7 сарын 6, Даваа - 20:00<small>Оройн зөөлөн уур амьсгал</small></span>
-            </label>
-
+        <section class="options">
             <label class="option">
                 <input type="radio" name="date" value="2026-07-08T18:30:00+08:00" data-label="7 сарын 8, Лхагва - 18:30">
                 <span>7 сарын 8, Лхагва - 18:30<small>Долоо хоногийн дунд жижиг баяр</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-09T19:00:00+08:00" data-label="7 сарын 9, Пүрэв - 19:00">
+                <span>7 сарын 9, Пүрэв - 19:00<small>Оройн тайван уулзалт</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-10T19:00:00+08:00" data-label="7 сарын 10, Баасан - 19:00">
+                <span>7 сарын 10, Баасан - 19:00<small>Баасан гарагийн болзоо</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-12T17:00:00+08:00" data-label="7 сарын 12, Ням - 17:00">
+                <span>7 сарын 12, Ням - 17:00<small>Амралтын өдрийн гоё цаг</small></span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="date" value="2026-07-13T20:00:00+08:00" data-label="7 сарын 13, Даваа - 20:00">
+                <span>7 сарын 13, Даваа - 20:00<small>Оройн зөөлөн уур амьсгал</small></span>
             </label>
         </section>
 
@@ -336,20 +311,7 @@ button:focus-visible {
     <div id="countdown"></div>
 </section>
 
-<audio id="music" preload="auto">
-    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-const EMAILJS_PUBLIC_KEY = "";
-const EMAILJS_SERVICE_ID = "";
-const EMAILJS_TEMPLATE_ID = "";
-const NOTIFY_EMAIL = "chingesc2@gmail.com";
-
-if (EMAILJS_PUBLIC_KEY) {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-}
-
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const noMessage = document.getElementById("noMessage");
@@ -361,7 +323,6 @@ let heartsTimer = null;
 function showDateChoices() {
     document.getElementById("askStep").style.display = "none";
     document.getElementById("dateStep").style.display = "block";
-
     createHearts();
 
     if (typeof confetti === "function") {
@@ -406,10 +367,10 @@ function teaseNoButton(event) {
         "За би хүлээж байна... тэвчээртэйгээр 😌"
     ];
 
-    const messageIndex = (noAttempts - 1) % buttonMessages.length;
+    const index = (noAttempts - 1) % buttonMessages.length;
 
-    noBtn.textContent = buttonMessages[messageIndex];
-    noMessage.textContent = longerMessages[messageIndex];
+    noBtn.textContent = buttonMessages[index];
+    noMessage.textContent = longerMessages[index];
 
     yesBtn.classList.add("grow");
     setTimeout(() => yesBtn.classList.remove("grow"), 240);
@@ -432,8 +393,6 @@ function confirmDate() {
 
     if (!selected) {
         alert("Эхлээд нэг өдрөө сонгоорой ❤️");
-        document.getElementById("chooseBtn").classList.add("grow");
-        setTimeout(() => document.getElementById("chooseBtn").classList.remove("grow"), 240);
         return;
     }
 
@@ -453,34 +412,7 @@ function confirmDate() {
     }
 
     createHearts();
-    playMusic();
     startCountdown(new Date(dateValue));
-    sendEmail(dateLabel);
-}
-
-function playMusic() {
-    const music = document.getElementById("music");
-
-    music.play().catch(() => {
-        console.log("Browser blocked audio playback.");
-    });
-}
-
-function sendEmail(dateLabel) {
-    const configured = EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && NOTIFY_EMAIL;
-
-    if (!configured) {
-        console.log("EmailJS тохируулаагүй байна. Сонгосон өдөр:", dateLabel);
-        console.log("Мэдэгдэх имэйл:", NOTIFY_EMAIL);
-        return;
-    }
-
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        to_email: NOTIFY_EMAIL,
-        message: "Сонгосон өдөр: " + dateLabel
-    }).catch((error) => {
-        console.log("Email илгээхэд алдаа гарлаа:", error);
-    });
 }
 
 function startCountdown(date) {
